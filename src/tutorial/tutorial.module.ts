@@ -4,7 +4,8 @@ import { TutorialModel } from './tutorial.model';
 import { TutorialService } from './tutorial.service';
 
 @Module({
-    imports: [TutorialModel],
-    providers: [TutorialService]
+  imports: [TutorialModel],
+  providers: [TutorialService],
+  controllers: [TutorialController],
 })
 export class TutorialModule {}
