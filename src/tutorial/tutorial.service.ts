@@ -14,14 +14,17 @@ export class TutorialService {
     title: string,
     description: string,
     published: boolean,
-  ): Promise<Tutorial> {
+  ): Promise<any> {
     try {
       const tutorial = await this.tutorialModel.create({
         title: title.toLocaleLowerCase(),
         description: description,
         published: published ? published : false,
       });
-      return tutorial;
+      return {
+        ...tutorial,
+        msg: "success",
+      }
     } catch {}
   }
   async findAllorTitle(title?: string) {
@@ -29,10 +32,9 @@ export class TutorialService {
     if (title === '' || title === undefined) {
       const tutorial = await this.tutorialModel.find();
       return tutorial;
-    }
-    else{
-        const tutorial = await this.tutorialModel.find({title: title});
-        return tutorial;
+    } else {
+      const tutorial = await this.tutorialModel.find({ title: title });
+      return tutorial;
     }
   }
 }
